@@ -8,7 +8,6 @@ pipeline {
                 sh 'python -m py_compile sources/add2vals.py sources/calc.py'
                 stash(name: 'comipled-results', includes: 'sources/*.py*')
             }
-        }
         stage('Test') {
             agent {
                 docker {
@@ -23,6 +22,7 @@ pipeline {
                     junit 'test-reports/results.xml'
                 }
             }
+        }
         }
     }
 }
